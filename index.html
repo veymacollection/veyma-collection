@@ -1,85 +1,459 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
   <title>Veyma Collection | ویما</title>
-  <meta name="description" content="Veyma Collection | ویما — حس راحتی و زیبایی">
+  <meta name="description" content="Veyma Collection | ویما — حس راحتی و زیبایی" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#0a0a0a;color:#f5e8c7;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
-    .wrap{width:min(100%,480px);margin:auto;padding:32px 18px 40px}
-    .logo{width:140px;height:140px;object-fit:cover;border-radius:50%;display:block;margin:0 auto 20px;border:3px solid #6b1e2f}
-    .tagline{text-align:center;color:#e8d5b5;margin-bottom:28px;font-size:16px;letter-spacing:.3px}
-    .section-title{font-size:14px;color:#c9a87c;margin:26px 4px 12px;font-weight:normal}
-    .links{display:grid;gap:11px}
-    a.card{display:flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:12px 16px;border:1px solid #2a1a1a;border-radius:14px;background:#121212;color:#f5e8c7;text-decoration:none;font-size:15px;transition:.15s}
-    a.card:active{transform:scale(.98);background:#1a1212}
-    .contact{display:flex;gap:10px}
-    .contact a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;border:1px solid #2a1a1a;border-radius:14px;background:#121212;color:#f5e8c7;text-decoration:none}
-    .person{background:#111;border:1px solid #2a1a1a;border-radius:16px;padding:16px;margin-bottom:12px}
-    .name{text-align:center;font-weight:bold;margin-bottom:12px;font-size:15px;color:#f5e8c7}
-    .address{display:flex;align-items:flex-start;gap:12px;background:#121212;border:1px solid #2a1a1a;border-radius:14px;padding:16px;font-size:14px;line-height:1.8;color:#e8d5b5}
-    .footer{text-align:center;color:#7a5c4a;font-size:12px;margin-top:32px}
-    .icon{width:22px;height:22px;fill:currentColor}
-    .wa-icon{width:24px;height:24px;fill:#25D366}
+    :root {
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.32);
+      --gold-glow: rgba(212, 175, 55, 0.22);
+      --bg: #050505;
+      --card: #111111;
+      --border: rgba(255,255,255,0.07);
+      --white: #ffffff;
+      --muted: #a8a8a8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Vazirmatn', Tahoma, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      padding: 16px 14px 28px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 13px;
+    }
+
+    /* لوگو با هاله و حلقه طلایی */
+    .logo-box {
+      position: relative;
+      width: 108px;
+      height: 108px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .logo-halo {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--gold-soft) 0%, transparent 68%);
+      filter: blur(10px);
+      animation: pulse 4.5s ease-in-out infinite;
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1.6px solid transparent;
+      background:
+        linear-gradient(var(--bg), var(--bg)) padding-box,
+        conic-gradient(from 0deg,
+          transparent 0%,
+          var(--gold) 18%,
+          transparent 38%,
+          var(--gold) 58%,
+          transparent 78%,
+          var(--gold) 100%) border-box;
+      animation: spin 12s linear infinite;
+    }
+
+    .logo {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 2;
+      border: 2px solid rgba(212,175,55,0.35);
+      box-shadow: 0 0 22px var(--gold-glow);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.65; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.2px;
+      margin-bottom: 2px;
+    }
+    .tagline span { color: var(--gold); }
+
+    .socials {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 11px 15px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: 0.22s ease;
+    }
+    .social:hover {
+      border-color: rgba(212,175,55,0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 18px rgba(0,0,0,0.35);
+    }
+    .social .ico {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+    .social .ico svg,
+    .social .ico img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    .social.ig .ico { filter: drop-shadow(0 0 10px rgba(225,48,108,0.4)); }
+    .social.tg .ico { filter: drop-shadow(0 0 10px rgba(55,174,226,0.4)); }
+    .social.bl .ico { filter: drop-shadow(0 0 10px rgba(0,200,170,0.35)); }
+
+    .contacts {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .person {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .person-name {
+      text-align: center;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .person-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .person-actions a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 42px;
+      border-radius: 11px;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .person-actions a:hover {
+      border-color: rgba(212,175,55,0.3);
+      background: #1f1f1f;
+    }
+    .person-actions a svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .person-actions a.wa svg { fill: #25D366; }
+    .person-actions a.call svg { fill: var(--gold); }
+
+    .address {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px 14px;
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    .address svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      fill: var(--gold);
+    }
+    .address strong {
+      display: block;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 13.5px;
+      margin-bottom: 2px;
+    }
+
+    .share-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: linear-gradient(135deg, rgba(212,175,55,0.14), rgba(212,175,55,0.05));
+      border: 1px solid rgba(212,175,55,0.38);
+      border-radius: 14px;
+      padding: 12px 16px;
+      color: var(--gold);
+      font-size: 14.5px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.22s ease;
+      margin-top: 2px;
+    }
+    .share-btn:hover {
+      background: linear-gradient(135deg, rgba(212,175,55,0.22), rgba(212,175,55,0.08));
+      border-color: rgba(212,175,55,0.55);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(212,175,55,0.12);
+    }
+    .share-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: #1c1c1c;
+      border: 1px solid rgba(212,175,55,0.4);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.28s ease;
+      z-index: 50;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      color: #555;
+      font-size: 11.5px;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-height: 720px) {
+      .wrap { gap: 10px; }
+      .logo-box { width: 92px; height: 92px; }
+      .logo { width: 92px; height: 92px; }
+      .tagline { font-size: 14px; }
+      .social { padding: 9px 13px; }
+      .person { padding: 10px 12px; }
+      .person-actions a { min-height: 38px; }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <img class="logo" src="logo.png" alt="Veyma Collection">
-    <div class="tagline">ویما | حس راحتی و زیبایی</div>
 
-    <div class="section-title">شبکه‌های اجتماعی</div>
-    <div class="links">
-      <a class="card" href="https://www.instagram.com/veyma_collection" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Instagram
+    <div class="logo-box">
+      <div class="logo-halo"></div>
+      <div class="logo-ring"></div>
+      <img class="logo" src="logo.png" alt="Veyma Collection" />
+    </div>
+
+    <div class="tagline">
+      <span>ویما</span> | حس راحتی و زیبایی
+    </div>
+
+    <div class="socials">
+      <a class="social ig" href="https://www.instagram.com/veyma_collection" target="_blank" rel="noopener">
+        <div class="ico">
+          <svg viewBox="0 0 130 130" width="28" height="28">
+            <defs>
+              <radialGradient id="ig" cx="0.3" cy="1.05" r="1.4">
+                <stop offset="0%" stop-color="#fdf497"/>
+                <stop offset="8%" stop-color="#fdf497"/>
+                <stop offset="45%" stop-color="#fd5949"/>
+                <stop offset="60%" stop-color="#d6249f"/>
+                <stop offset="90%" stop-color="#285AEB"/>
+              </radialGradient>
+            </defs>
+            <rect x="5" y="5" width="120" height="120" rx="30" fill="url(#ig)"/>
+            <circle cx="65" cy="65" r="27" fill="none" stroke="#fff" stroke-width="9"/>
+            <circle cx="95" cy="35" r="7.5" fill="#fff"/>
+          </svg>
+        </div>
+        <span>اینستاگرام</span>
       </a>
-      <a class="card" href="https://t.me/veyma_collection" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        Telegram
+
+      <a class="social tg" href="https://t.me/veyma_collection" target="_blank" rel="noopener">
+        <div class="ico">
+          <svg viewBox="0 0 240 240" width="28" height="28">
+            <defs>
+              <linearGradient id="tg" x1="20%" y1="10%" x2="80%" y2="90%">
+                <stop offset="0%" stop-color="#37aee2"/>
+                <stop offset="100%" stop-color="#1e96c8"/>
+              </linearGradient>
+            </defs>
+            <circle cx="120" cy="120" r="120" fill="url(#tg)"/>
+            <path fill="#fff" d="M100.1 162.4c-1.4 0-2.4-.5-3.2-1.8l-11.1-36.5 72.5-44.7c3.2-1.9 6.3.5 5 4.4l-24.7 71.9c-1 2.9-4.1 3.9-6.8 2.2l-19.9-14.8-9.5 9.2c-1.2 1.2-2.3.7-2 .8l3.4-22.8 48.4-43.7c2.1-1.9 1-2.9-1.3-1.2L86.5 136.8l-2.7 29.1c-.3 1.4.7 2.5 2.3 2.5z"/>
+          </svg>
+        </div>
+        <span>تلگرام</span>
       </a>
-      <a class="card" href="https://ble.ir/join/62WsQLaubp" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.12-1.34A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.53 0-2.96-.4-4.2-1.1l-.3-.18-3.13.82.84-3.05-.2-.32A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.28-5.45c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.64-1.19-1.43-1.33-1.67-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.57.18 1.09.16 1.5.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
-        Bale
+
+      <a class="social bl" href="https://ble.ir/join/62WsQLaubp" target="_blank" rel="noopener">
+        <div class="ico">
+          <img src="data:image/png;base64,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" alt="بله" width="28" height="28" />
+        </div>
+        <span>بله</span>
       </a>
     </div>
 
-    <div class="section-title">تماس با ما</div>
+    <div class="contacts">
+      <div class="person">
+        <div class="person-name">وحید عباسی</div>
+        <div class="person-actions">
+          <a class="call" href="tel:09128606076" aria-label="تماس">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            تماس
+          </a>
+          <a class="wa" href="https://wa.me/989128606076" target="_blank" rel="noopener" aria-label="واتساپ">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            واتساپ
+          </a>
+        </div>
+      </div>
 
-    <div class="person">
-      <div class="name">وحید عباسی</div>
-      <div class="contact">
-        <a href="tel:09128606076" aria-label="تماس">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </a>
-        <a href="https://wa.me/989128606076" target="_blank" rel="noopener" aria-label="واتساپ">
-          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+      <div class="person">
+        <div class="person-name">ایمان توکلی</div>
+        <div class="person-actions">
+          <a class="call" href="tel:09125490503" aria-label="تماس">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            تماس
+          </a>
+          <a class="wa" href="https://wa.me/989125490503" target="_blank" rel="noopener" aria-label="واتساپ">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            واتساپ
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="person">
-      <div class="name">ایمان توکلی</div>
-      <div class="contact">
-        <a href="tel:09125490503" aria-label="تماس">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </a>
-        <a href="https://wa.me/989125490503" target="_blank" rel="noopener" aria-label="واتساپ">
-          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="section-title">آدرس فروشگاه</div>
     <div class="address">
-      <svg class="icon" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:3px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-      <div>خیابان مولوی، بازار حاج قاسم، پاساژ المهدی ۴، طبقه منفی ۱، پلاک ۲۳۱</div>
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+      <div>
+        <strong>آدرس فروشگاه</strong>
+        خیابان مولوی، بازار حاج قاسم، پاساژ المهدی ۴، طبقه منفی ۱، پلاک ۲۳۱
+      </div>
     </div>
+
+    <button class="share-btn" id="shareBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+      اشتراک‌گذاری این صفحه
+    </button>
+
+    <div class="toast" id="toast">لینک کپی شد ✓</div>
 
     <div class="footer">Veyma Collection © 2026</div>
   </main>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('shareBtn');
+      const toast = document.getElementById('toast');
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      btn.addEventListener('click', async () => {
+        const data = {
+          title: 'Veyma Collection | ویما',
+          text: 'ویما | حس راحتی و زیبایی',
+          url: window.location.href
+        };
+
+        if (navigator.share) {
+          try {
+            await navigator.share(data);
+            return;
+          } catch (err) {
+            if (err.name === 'AbortError') return;
+          }
+        }
+
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('لینک کپی شد ✓');
+        } catch {
+          const input = document.createElement('input');
+          input.value = window.location.href;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+          showToast('لینک کپی شد ✓');
+        }
+      });
+    })();
+  </script>
 </body>
-</html>
+            </html>

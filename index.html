@@ -478,6 +478,40 @@
   </main>
 
   <script>
+    /* ===== آمار بازدید (بی‌صدا، بدون کوکی و بدون اطلاعات شخصی) =====
+       کد سایت خودتان را از goatcounter.com بگیرید و اینجا بنویسید.
+       تا وقتی خالی باشد هیچ چیزی بارگذاری نمی‌شود. */
+    (function () {
+      const GOATCOUNTER_CODE = 'veyma';
+      if (!GOATCOUNTER_CODE) return;
+
+      window.goatcounter = { no_onload: false };
+      const sc = document.createElement('script');
+      sc.async = true;
+      sc.src = 'https://gc.zgo.at/count.js';
+      sc.setAttribute('data-goatcounter', 'https://' + GOATCOUNTER_CODE + '.goatcounter.com/count');
+      document.head.appendChild(sc);
+
+      // شمارش کلیک روی هر دکمه
+      const names = {
+        'social ig': 'click-instagram', 'social tg': 'click-telegram',
+        'social rb': 'click-rubika', 'social bl': 'click-bale'
+      };
+      document.addEventListener('click', function (e) {
+        const a = e.target.closest('a, button');
+        if (!a || !window.goatcounter || !window.goatcounter.count) return;
+        let name = null;
+        for (const k in names) { if (a.className.indexOf(k) !== -1) name = names[k]; }
+        if (!name && (a.classList.contains('call') || a.classList.contains('wa'))) {
+          const who = a.closest('.person');
+          const n = who ? who.querySelector('.person-name').textContent.trim() : '';
+          name = (a.classList.contains('call') ? 'click-call-' : 'click-whatsapp-') + n;
+        }
+        if (a.id === 'shareBtn') name = 'click-share';
+        if (name) window.goatcounter.count({ path: name, title: name, event: true });
+      });
+    })();
+
     /* ===== جشن: ریزش گل، کاغذ رنگی، طلایی و نقره‌ای از بالا ===== */
     (function () {
       const intro = document.getElementById('intro');
